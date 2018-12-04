@@ -1,0 +1,9 @@
+#Default the security credentials to call the config service. Override these
+#for your deployment.
+direct:
+  webservices:
+    security:
+      basic:
+        user:
+          name: admin
+          password: d1r3ct;
