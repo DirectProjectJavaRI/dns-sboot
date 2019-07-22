@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dns-sboot</artifactId>    
     <name>Direct Project DNS Server SpringBoot Application</name>
-    <version>6.0</version>
+    <version>6.0.1</version>
     <description>Direct Project DNS Server SpringBoot Application</description>
     <inceptionYear>2010</inceptionYear>
     <url>https://github.com/DirectProjectJavaRI/dns-sboot</url> 
@@ -32,7 +32,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-	   <version>2.1.2.RELEASE</version>   
+	   <version>2.1.6.RELEASE</version>   
 		<relativePath />
 	</parent>		
     <licenses>
@@ -46,21 +46,21 @@
 			<dependency>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.1.2.RELEASE</version> 
+				<version>2.1.6.RELEASE</version> 
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
 	        <dependency>
 	            <groupId>io.pivotal.spring.cloud</groupId>
 	            <artifactId>spring-cloud-services-dependencies</artifactId>
-	            <version>2.0.3.RELEASE</version>
+	            <version>2.1.1.RELEASE</version>
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>				
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-starter-parent</artifactId>
-				 <version>Greenwich.RELEASE</version>
+				 <version>Greenwich.SR1</version>
 				<type>pom</type>
 				<scope>import</scope>		
 			</dependency>											
@@ -106,7 +106,7 @@
 		<dependency>
 		    <groupId>org.nhind</groupId>
 		    <artifactId>dns</artifactId>
-		    <version>6.0</version>  	     
+		    <version>6.0.1</version>  	     
 		</dependency>			
 		<dependency>
 		    <groupId>org.nhind</groupId>
@@ -121,7 +121,7 @@
 		<dependency>
 		    <groupId>org.nhind</groupId>
 		    <artifactId>direct-common</artifactId>
-		    <version>6.0</version>   
+		    <version>6.0.1</version>   
 		</dependency>																																																																																																				
   </dependencies>      
   <build>
@@ -230,7 +230,7 @@
 	     <plugin>
 	      	<groupId>org.apache.maven.plugins</groupId> 
 	        <artifactId>maven-javadoc-plugin</artifactId>
-	        <version>2.6.1</version>
+	        <version>2.9.1</version>
 	        <configuration>
 			    <additionalparam>-Xdoclint:none</additionalparam>
 				<charset>UTF-8</charset>
@@ -278,7 +278,7 @@
 	      <plugin>
 	      	<groupId>org.apache.maven.plugins</groupId> 
 	        <artifactId>maven-javadoc-plugin</artifactId>
-	        <version>2.6.1</version>
+	        <version>2.9.1</version>
 	        <configuration>
 			    <additionalparam>-Xdoclint:none</additionalparam>
 				<charset>UTF-8</charset>
