@@ -21,13 +21,9 @@ import java.security.Security;
 
 import org.nhindirect.dns.DNSException;
 import org.nhindirect.dns.DNSServerSettings;
-import org.nhindirect.dns.RESTServiceDNSStore;
 import org.nhindirect.dns.service.DNSServerService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -37,14 +33,15 @@ import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfigurat
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.ComponentScan;
 
+import lombok.extern.slf4j.Slf4j;
+
 @ComponentScan("org.nhindirect.dns")
 @EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, 
 		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
+@Slf4j
 public class DNSServerApplication implements CommandLineRunner
 {
-	private static final Logger LOGGER = LoggerFactory.getLogger(RESTServiceDNSStore.class);	
-	
 	@Autowired
 	protected DNSServerService dnsService;
 	
@@ -67,13 +64,10 @@ public class DNSServerApplication implements CommandLineRunner
 
 	public static void main(String[] args)
 	{
-        SpringApplication springApplication = 
-                new SpringApplicationBuilder()
-                .sources(DNSServerApplication.class)
-                .web(WebApplicationType.NONE)
-                .build();
-
-        springApplication.run(args);
+        new SpringApplicationBuilder()
+        .sources(DNSServerApplication.class)
+        .web(WebApplicationType.NONE)
+        .run(args);
 	}
 	
 	@Override
@@ -90,7 +84,7 @@ public class DNSServerApplication implements CommandLineRunner
 		StringBuffer buffer = new StringBuffer("Starting DNS server.  Settings:");
 		buffer.append("\r\n\tBind Addresses: ").append(settings.getBindAddress());
 		buffer.append("\r\n\tListen Port: ").append(settings.getPort());
-		LOGGER.info(buffer.toString() + "\n");
+		log.info(buffer.toString() + "\n");
 
 		try
 		{
@@ -98,13 +92,13 @@ public class DNSServerApplication implements CommandLineRunner
 		}
 		catch (DNSException e)
 		{
-			LOGGER.error("Server failed to start: " + e.getMessage(), e);
+			log.error("Server failed to start: " + e.getMessage(), e);
 			return;
 		}
 			
 		if (mode.equalsIgnoreCase(MODE_STANDALONE))
 		{
-			LOGGER.info("\r\nServer running....  Press Enter or Return to stop.");
+			log.info("\r\nServer running....  Press Enter or Return to stop.");
 			
 			InputStreamReader input = new InputStreamReader(System.in);
 			BufferedReader reader = new BufferedReader(input);
@@ -113,13 +107,13 @@ public class DNSServerApplication implements CommandLineRunner
 			{
 				reader.readLine();
 				
-				LOGGER.info("Shutting down server.  Wait 5 seconds for cleanup.");
+				log.info("Shutting down server.  Wait 5 seconds for cleanup.");
 				
 				dnsService.stopService();
 			
 				Thread.sleep(5000);
 				
-				LOGGER.info("Server stopped");
+				log.info("Server stopped");
 			}
 			catch (Exception e)
 			{
@@ -127,7 +121,7 @@ public class DNSServerApplication implements CommandLineRunner
 			}
 		}				
 		else
-			LOGGER.info("\r\nServer running.");
+			log.info("\r\nServer running.");
 	}
 
 }
