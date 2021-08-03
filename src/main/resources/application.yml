@@ -7,3 +7,7 @@ direct:
         user:
           name: admin
           password: d1r3ct;
+          
+  config:
+    service:
+      url: http://localhost:8080/config-service          
