@@ -44,7 +44,7 @@
          <name>New BSD License</name>
          <url>http://nhindirect.org/BSDLicense</url>
       </license>
-    </licenses>   
+    </licenses>    
 	<dependencyManagement>
 		<dependencies>											
 			<dependency>
