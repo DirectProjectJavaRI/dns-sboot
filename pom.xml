@@ -38,14 +38,13 @@
     <properties>
       <dnsjava.version>3.3.1</dnsjava.version> 
       <mina-core.version>2.1.4</mina-core.version>
-      <bcprov-jdk15on.version>1.68</bcprov-jdk15on.version>
     </properties> 			
     <licenses>
       <license>
          <name>New BSD License</name>
          <url>http://nhindirect.org/BSDLicense</url>
       </license>
-    </licenses>   
+    </licenses>    
 	<dependencyManagement>
 		<dependencies>											
 			<dependency>
@@ -71,7 +70,12 @@
 			</dependency>											
 		</dependencies>
 	</dependencyManagement>			     
-    <dependencies>    
+    <dependencies>  
+ 		<dependency>
+		    <groupId>org.nhind</groupId>
+		    <artifactId>dns</artifactId>
+		    <version>8.1.0-SNAPSHOT</version>  	     
+		</dependency>				    
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-configuration-processor</artifactId>
@@ -82,11 +86,39 @@
 		</dependency>	
 	    <dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>			
+			<artifactId>spring-cloud-starter-config</artifactId>		
+			<exclusions>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcprov-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcmail-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcpkix-jdk15on</artifactId>
+				</exclusion>
+			</exclusions>					
 		</dependency>	
 		<dependency>
 		    <groupId>org.springframework.cloud</groupId>
 		    <artifactId>spring-cloud-starter-bootstrap</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcprov-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcmail-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcpkix-jdk15on</artifactId>
+				</exclusion>
+			</exclusions>			    
 		</dependency>			
 	    <dependency>
 	      <groupId>io.pivotal.spring.cloud</groupId>
@@ -96,42 +128,24 @@
 		            <groupId>org.codehaus.jackson</groupId>
 		            <artifactId>jackson-mapper-asl</artifactId>
 		        </exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcprov-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcmail-jdk15on</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.bouncycastle</groupId>
+					<artifactId>bcpkix-jdk15on</artifactId>
+				</exclusion>		        
 		  </exclusions>		      
 	    </dependency>		    		 		              
-		  <dependency>
-		    <groupId>org.bouncycastle</groupId>
-		    <artifactId>bcprov-jdk15on</artifactId>
-		    <version>${bcprov-jdk15on.version}</version>    
-		  </dependency> 
 		<dependency>
 		    <groupId>dnsjava</groupId>
 		    <artifactId>dnsjava</artifactId>
 		    <version>${dnsjava.version}</version>	    
-		</dependency>	
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>dns</artifactId>
-		    <version>8.0.1</version>  	     
-		</dependency>	
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>config-model</artifactId>
-		    <version>8.0.0</version>  	     
-		</dependency>				
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>config-service-client</artifactId>
-		    <version>8.0.0</version>  	     
-		</dependency>	
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>direct-policy</artifactId>
-		    <version>8.0.0</version>   
-		</dependency>	
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>direct-common</artifactId>
-		    <version>8.0.0</version>   
 		</dependency>																																																																																																				
   </dependencies>      
   <build>
