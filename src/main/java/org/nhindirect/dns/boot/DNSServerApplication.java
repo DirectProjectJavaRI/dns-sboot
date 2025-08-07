@@ -31,6 +31,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +41,7 @@ import lombok.extern.slf4j.Slf4j;
 		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
 @Slf4j
-public class DNSServerApplication implements CommandLineRunner
+public class DNSServerApplication
 {
 	@Autowired
 	protected DNSServerService dnsService;
@@ -70,10 +71,10 @@ public class DNSServerApplication implements CommandLineRunner
         .run(args);
 	}
 	
-	@Override
-	public void run(String... args) throws Exception
+	@Bean
+	public CommandLineRunner run()
 	{
-		startAndRun();
+		return (args) -> startAndRun();
 	}
 	
 	/*

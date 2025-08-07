@@ -1,3 +1,10 @@
+spring:
+  application:
+    name: direct-dns-server
+    
+  main:
+    allow-bean-definition-overriding: true
+
 #Default the security credentials to call the config service. Override these
 #for your deployment.
 direct:
@@ -10,4 +17,4 @@ direct:
           
   config:
     service:
-      url: http://localhost:8080/config-service          
+      url: http://localhost:8082/         
