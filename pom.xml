@@ -32,7 +32,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-	   <version>3.5.0</version>   
+	   <version>4.0.1</version>   
 		<relativePath />
 	</parent>			
     <licenses>
@@ -46,14 +46,14 @@
 	        <dependency>
 	            <groupId>io.pivotal.spring.cloud</groupId>
 	            <artifactId>spring-cloud-services-dependencies</artifactId>
-	            <version>4.3.0</version>
+	            <version>4.4.0</version>
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>				
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
-				 <version>2025.0.0</version>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				 <version>2025.1.0</version>
 				<type>pom</type>
 				<scope>import</scope>		
 			</dependency>											
@@ -63,7 +63,7 @@
  		<dependency>
 		    <groupId>org.nhind</groupId>
 		    <artifactId>dns</artifactId>
-		    <version>8.1.0</version>  	     
+		    <version>9.0.0-SNAPSHOT</version>  	     
 		</dependency>				    
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
@@ -98,12 +98,7 @@
 					<artifactId>bcpkix-jdk15on</artifactId>
 				</exclusion>		        
 		  </exclusions>		      
-	    </dependency>		    		 		              
-		<dependency>
-		    <groupId>org.nhind</groupId>
-		    <artifactId>dns</artifactId>
-		    <version>9.0.0-SNAPSHOT</version>  	     
-		</dependency>																																																																																																				
+	    </dependency>		    		 		              																																																																																																			
   </dependencies>      
   <build>
   	<extensions>
