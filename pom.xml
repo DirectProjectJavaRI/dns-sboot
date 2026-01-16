@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>dns-sboot</artifactId>    
     <name>Direct Project DNS Server SpringBoot Application</name>
-    <version>8.2.0-SNAPSHOT</version>
+    <version>9.0.0-SNAPSHOT</version>
     <description>Direct Project DNS Server SpringBoot Application</description>
     <inceptionYear>2010</inceptionYear>
     <url>https://github.com/DirectProjectJavaRI/dns-sboot</url> 
@@ -32,13 +32,9 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-	   <version>2.5.2</version>   
+	   <version>4.0.1</version>   
 		<relativePath />
-	</parent>
-    <properties>
-      <dnsjava.version>3.3.1</dnsjava.version> 
-      <mina-core.version>2.1.4</mina-core.version>
-    </properties> 			
+	</parent>			
     <licenses>
       <license>
          <name>New BSD License</name>
@@ -47,24 +43,17 @@
     </licenses>    
 	<dependencyManagement>
 		<dependencies>											
-			<dependency>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-dependencies</artifactId>
-				<version>2.5.1</version> 
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
 	        <dependency>
 	            <groupId>io.pivotal.spring.cloud</groupId>
 	            <artifactId>spring-cloud-services-dependencies</artifactId>
-	            <version>3.3.0</version>
+	            <version>4.4.0</version>
 	            <type>pom</type>
 	            <scope>import</scope>
 	        </dependency>				
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-starter-parent</artifactId>
-				 <version>2020.0.3</version>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				 <version>2025.1.0</version>
 				<type>pom</type>
 				<scope>import</scope>		
 			</dependency>											
@@ -74,7 +63,7 @@
  		<dependency>
 		    <groupId>org.nhind</groupId>
 		    <artifactId>dns</artifactId>
-		    <version>8.1.0</version>  	     
+		    <version>9.0.0-SNAPSHOT</version>  	     
 		</dependency>				    
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
@@ -86,40 +75,8 @@
 		</dependency>	
 	    <dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-config</artifactId>		
-			<exclusions>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcprov-jdk15on</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcmail-jdk15on</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcpkix-jdk15on</artifactId>
-				</exclusion>
-			</exclusions>					
-		</dependency>	
-		<dependency>
-		    <groupId>org.springframework.cloud</groupId>
-		    <artifactId>spring-cloud-starter-bootstrap</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcprov-jdk15on</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcmail-jdk15on</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>org.bouncycastle</groupId>
-					<artifactId>bcpkix-jdk15on</artifactId>
-				</exclusion>
-			</exclusions>			    
-		</dependency>			
+			<artifactId>spring-cloud-starter-config</artifactId>			
+		</dependency>		
 	    <dependency>
 	      <groupId>io.pivotal.spring.cloud</groupId>
 	      <artifactId>spring-cloud-services-starter-config-client</artifactId>
@@ -141,29 +98,21 @@
 					<artifactId>bcpkix-jdk15on</artifactId>
 				</exclusion>		        
 		  </exclusions>		      
-	    </dependency>		    		 		              
-		<dependency>
-		    <groupId>dnsjava</groupId>
-		    <artifactId>dnsjava</artifactId>
-		    <version>${dnsjava.version}</version>	    
-		</dependency>																																																																																																				
+	    </dependency>		    		 		              																																																																																																			
   </dependencies>      
   <build>
   	<extensions>
 		<extension>
 			<groupId>org.apache.maven.wagon</groupId>
 			<artifactId>wagon-webdav-jackrabbit</artifactId>
-			<version>3.1.0</version>
 		</extension>
 		<extension>
 			<groupId>org.apache.maven.wagon</groupId>
 			<artifactId>wagon-ssh-external</artifactId>
-			<version>3.1.0</version>
 		</extension>
 		<extension>
 			<groupId>org.apache.maven.wagon</groupId>
 			<artifactId>wagon-ssh</artifactId>
-			<version>3.1.0</version>
 		</extension>		
    	</extensions>
     <resources>
@@ -192,7 +141,6 @@
 	<plugin>
 		<groupId>org.apache.maven.plugins</groupId>
 		<artifactId>maven-jxr-plugin</artifactId>
-		<version>3.1.1</version>
 	</plugin> 
 	<plugin>
 		<groupId>org.apache.maven.plugins</groupId>
@@ -210,8 +158,8 @@
 			<optimize>true</optimize>
 			<showDeprecation>true</showDeprecation>
 			<encoding>UTF-8</encoding>
-			<source>1.8</source>
-			<target>1.8</target>
+			<source>17</source>
+			<target>17</target>
 		</configuration>
 	</plugin>	     
       <plugin>
@@ -256,7 +204,7 @@
 				<docfilessubdirs>true</docfilessubdirs>
 				<detectJavaApiLink>true</detectJavaApiLink>
 				<detectLinks>true</detectLinks>
-				<source>1.8</source>
+				<source>17</source>
 				<show>public</show>            	          
 	        </configuration>
 	        <executions>
@@ -312,7 +260,7 @@
 				<docfilessubdirs>true</docfilessubdirs>
 				<detectJavaApiLink>true</detectJavaApiLink>
 				<detectLinks>true</detectLinks>
-				<source>1.8</source>
+				<source>17</source>
 				<show>public</show>           	          
 	        </configuration>
 	      </plugin>
@@ -320,7 +268,7 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-pmd-plugin</artifactId>
        			<configuration>
-          			<targetJdk>1.8</targetJdk>
+          			<targetJdk>17</targetJdk>
         		</configuration>					
 			</plugin>
 		    <plugin>
@@ -330,7 +278,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jxr-plugin</artifactId>
-				<version>3.1.1</version>
 			</plugin>			
 	        <plugin>
 	            <groupId>org.codehaus.mojo</groupId>

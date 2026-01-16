@@ -25,22 +25,15 @@ import org.nhindirect.dns.service.DNSServerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.WebApplicationType;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Bean;
 
 import lombok.extern.slf4j.Slf4j;
 
-@ComponentScan("org.nhindirect.dns")
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, 
-		DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 @SpringBootApplication
 @Slf4j
-public class DNSServerApplication implements CommandLineRunner
+public class DNSServerApplication
 {
 	@Autowired
 	protected DNSServerService dnsService;
@@ -70,10 +63,10 @@ public class DNSServerApplication implements CommandLineRunner
         .run(args);
 	}
 	
-	@Override
-	public void run(String... args) throws Exception
+	@Bean
+	public CommandLineRunner run()
 	{
-		startAndRun();
+		return (args) -> startAndRun();
 	}
 	
 	/*
