@@ -32,7 +32,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-	   <version>4.0.1</version>   
+	   <version>4.0.6</version>   
 		<relativePath />
 	</parent>			
     <licenses>
@@ -41,6 +41,10 @@
          <url>http://nhindirect.org/BSDLicense</url>
       </license>
     </licenses>    
+	<properties>
+		<newrelic-agent.version>8.20.0</newrelic-agent.version>
+	</properties>
+
 	<dependencyManagement>
 		<dependencies>											
 	        <dependency>
@@ -53,7 +57,7 @@
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-dependencies</artifactId>
-				 <version>2025.1.0</version>
+				 <version>2025.1.1</version>
 				<type>pom</type>
 				<scope>import</scope>		
 			</dependency>											
@@ -192,8 +196,17 @@
 
 	 <plugin>
 		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-maven-plugin</artifactId>			
-	 </plugin>	
+		<artifactId>spring-boot-maven-plugin</artifactId>
+		<configuration>
+			<image>
+				<name>dns-sboot:${project.version}</name>
+				<builder>paketobuildpacks/builder-jammy-full</builder>
+				<env>
+					<BP_JVM_VERSION>21</BP_JVM_VERSION>
+				</env>
+			</image>
+		</configuration>
+	 </plugin>
 	     <plugin>
 	      	<groupId>org.apache.maven.plugins</groupId> 
 	        <artifactId>maven-javadoc-plugin</artifactId>
@@ -243,7 +256,40 @@
           </configuration>
         </plugin>      
     </plugins>	    
-  </build>                        
+  </build>
+  <profiles>
+    <profile>
+	  <id>build-image-new-relic</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>copy-newrelic-agent</id>
+                <phase>prepare-package</phase>
+                <goals>
+                  <goal>copy</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>com.newrelic.agent.java</groupId>
+                      <artifactId>newrelic-agent</artifactId>
+                      <version>${newrelic-agent.version}</version>
+                      <destFileName>newrelic-agent.jar</destFileName>
+                      <outputDirectory>${project.build.outputDirectory}/newrelic</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
   <reporting>
 		<plugins>
           <plugin>
